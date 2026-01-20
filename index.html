@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressignificar Space - Clínica de Psicologia em Feira de Santana</title>
+    <meta name="description" content="Clínica de Psicologia e Avaliação Psicológica em Feira de Santana. Espaço compartilhado para profissionais da saúde mental.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0891B2',
+                        secondary: '#22D3EE',
+                        cta: '#059669',
+                        background: '#ECFEFF',
+                        text: '#164E63',
+                    },
+                    fontFamily: {
+                        heading: ['Figtree', 'sans-serif'],
+                        body: ['Noto Sans', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background: #ECFEFF;
+            color: #164E63;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Figtree', sans-serif;
+        }
+
+        /* EFEITOS DE LUZ MUITO MAIS VISÍVEIS */
+        .light-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            background: linear-gradient(135deg, #ECFEFF 0%, #E0F2FE 100%);
+        }
+
+        .light {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: float 20s infinite;
+            opacity: 0.5;
+        }
+
+        .light-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(8, 145, 178, 0.8) 0%, rgba(8, 145, 178, 0.4) 50%, rgba(8, 145, 178, 0) 70%);
+            top: 5%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .light-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.7) 0%, rgba(5, 150, 105, 0.3) 50%, rgba(5, 150, 105, 0) 70%);
+            top: 40%;
+            right: 5%;
+            animation-delay: -7s;
+        }
+
+        .light-3 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.6) 0%, rgba(34, 211, 238, 0.3) 50%, rgba(34, 211, 238, 0) 70%);
+            bottom: 15%;
+            left: 35%;
+            animation-delay: -14s;
+        }
+
+        .light-4 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.5) 0%, rgba(16, 185, 129, 0.2) 50%, rgba(16, 185, 129, 0) 70%);
+            top: 60%;
+            left: 10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(100px, -100px) scale(1.15);
+            }
+            50% {
+                transform: translate(-80px, 100px) scale(0.9);
+            }
+            75% {
+                transform: translate(80px, 80px) scale(1.1);
+            }
+        }
+
+
+        /* Neumorphic styles */
+        .neuro-card {
+            background: #ECFEFF;
+            border-radius: 16px;
+            box-shadow: -8px -8px 20px rgba(255, 255, 255, 0.8),
+                        8px 8px 20px rgba(8, 145, 178, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .neuro-card:hover {
+            box-shadow: -12px -12px 24px rgba(255, 255, 255, 0.9),
+                        12px 12px 24px rgba(8, 145, 178, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .neuro-button {
+            background: #ECFEFF;
+            border-radius: 12px;
+            box-shadow: -6px -6px 16px rgba(255, 255, 255, 0.8),
+                        6px 6px 16px rgba(8, 145, 178, 0.15);
+            transition: all 0.15s ease;
+        }
+
+        .neuro-button:hover {
+            box-shadow: -8px -8px 20px rgba(255, 255, 255, 0.9),
+                        8px 8px 20px rgba(8, 145, 178, 0.2);
+        }
+
+        .neuro-button:active {
+            box-shadow: inset -3px -3px 10px rgba(255, 255, 255, 0.7),
+                        inset 3px 3px 10px rgba(8, 145, 178, 0.2);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3),
+                        -4px -4px 12px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 12px 32px rgba(5, 150, 105, 0.4),
+                        -6px -6px 16px rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+        }
+
+        /* Input neumorphism */
+        .neuro-input {
+            background: #ECFEFF;
+            border-radius: 12px;
+            box-shadow: inset -3px -3px 10px rgba(255, 255, 255, 0.7),
+                        inset 3px 3px 10px rgba(8, 145, 178, 0.15);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .neuro-input:focus {
+            outline: none;
+            box-shadow: inset -4px -4px 12px rgba(255, 255, 255, 0.8),
+                        inset 4px 4px 12px rgba(8, 145, 178, 0.2),
+                        0 0 0 3px rgba(8, 145, 178, 0.1);
+        }
+
+        /* Icon styling */
+        .icon-container {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: #ECFEFF;
+            box-shadow: -6px -6px 16px rgba(255, 255, 255, 0.8),
+                        6px 6px 16px rgba(8, 145, 178, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Fade in animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* Menu Mobile */
+        #mobileMenu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        #mobileMenu.hidden {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #mobileMenu:not(.hidden) {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .light,
+            .particle,
+            .fade-in-up {
+                animation: none !important;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+
+
+        /* Partículas elegantes e sutis */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(8, 145, 178, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(8, 145, 178, 0.8),
+                        0 0 20px rgba(5, 150, 105, 0.5),
+                        0 0 30px rgba(8, 145, 178, 0.3);
+            animation: riseElegant 20s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes riseElegant {
+            0% {
+                bottom: -5%;
+                opacity: 0;
+                transform: translateX(0) scale(0.5);
+            }
+            10% {
+                opacity: 0.7;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                bottom: 105%;
+                opacity: 0;
+                transform: translateX(30px) scale(1);
+            }
+        }
+
+        /* Efeito de água realista com jquery.ripples - visual tranquilo e aquático */
+        .ripple-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image: none;
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
+            filter: blur(0.3px);
+            transition: opacity 0.3s ease;
+        }
+        
+        .ripple-bg canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .light {
+                width: 350px !important;
+                height: 350px !important;
+                filter: blur(70px);
+            }
+
+            .particle {
+                width: 3px;
+                height: 3px;
+            }
+
+            .ripple-bg {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Efeito de água realista com jquery.ripples -->
+    <div class="ripple-bg"></div>
+
+    <!-- Fundo animado com luzes -->
+    <div class="light-background">
+        <div class="light light-1"></div>
+        <div class="light light-2"></div>
+        <div class="light light-3"></div>
+        <div class="light light-4"></div>
+    </div>
+
+    <!-- Partículas elegantes -->
+    <div class="particles" id="particles"></div>
+
+    <div class="relative z-10">
+        <!-- Header -->
+        <header class="py-6 md:py-8 px-4 md:px-8">
+            <nav class="max-w-7xl mx-auto neuro-card px-6 md:px-8 py-4 md:py-5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        <span class="text-xl md:text-2xl font-heading font-bold text-text">Ressignificar Space</span>
+                    </div>
+                    <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                        <a href="#sobre" class="text-text hover:text-primary transition-colors duration-200 font-medium cursor-pointer">Sobre</a>
+                        <a href="#profissionais" class="text-text hover:text-primary transition-colors duration-200 font-medium cursor-pointer">Profissionais</a>
+                        <a href="#servicos" class="text-text hover:text-primary transition-colors duration-200 font-medium cursor-pointer">Serviços</a>
+                        <a href="#contato" class="cta-button text-white px-6 py-2.5 font-semibold cursor-pointer">Agendar Consulta</a>
+                    </div>
+                    <button id="mobileMenuButton" class="md:hidden text-text p-2" aria-label="Menu">
+                        <svg id="menuIcon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Menu Mobile -->
+                <div id="mobileMenu" class="hidden md:hidden mt-4 pt-4 border-t border-primary/20">
+                    <div class="flex flex-col gap-4">
+                        <a href="#sobre" class="text-text hover:text-primary transition-colors duration-200 font-medium cursor-pointer py-2">Sobre</a>
+                        <a href="#profissionais" class="text-text hover:text-primary transition-colors duration-200 font-medium cursor-pointer py-2">Profissionais</a>
+                        <a href="#servicos" class="text-text hover:text-primary transition-colors duration-200 font-medium cursor-pointer py-2">Serviços</a>
+                        <a href="#contato" class="cta-button text-white px-6 py-3 font-semibold cursor-pointer text-center">Agendar Consulta</a>
+                    </div>
+                </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center py-12 md:py-20 px-4 md:px-8">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="space-y-6 md:space-y-8">
+                        <div class="inline-flex items-center gap-2 neuro-card px-4 py-2 fade-in-up">
+                            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-semibold text-text">5.0 - 3 Avaliações no Google</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold text-text leading-tight fade-in-up delay-100">
+                            Cuide da sua <span class="text-primary">Saúde Mental</span>
+                        </h1>
+                        <p class="text-lg md:text-xl lg:text-2xl text-text/80 leading-relaxed fade-in-up delay-200">
+                            Clínica de Psicologia e Avaliação Psicológica em Feira de Santana.
+                            Profissionais especializados em TCC e Psicodiagnóstico.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 fade-in-up delay-300">
+                            <a href="#contato" class="cta-button text-white px-8 py-4 font-heading font-semibold text-lg cursor-pointer text-center">
+                                Agende sua Consulta
+                            </a>
+                            <a href="tel:+5575992770331" class="neuro-button px-8 py-4 font-heading font-semibold text-lg text-text cursor-pointer text-center hover:text-primary">
+                                (75) 99277-0331
+                            </a>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 md:gap-6 pt-4 fade-in-up delay-400">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-cta" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="font-medium text-text/90 text-sm md:text-base">Presencial e Online</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-cta" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="font-medium text-text/90 text-sm md:text-base">Feira de Santana - BA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative fade-in-up delay-500">
+                        <div class="neuro-card p-4 md:p-8 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=700&h=800&fit=crop&q=80"
+                                 alt="Consultório de Psicologia Acolhedor"
+                                 class="w-full h-auto rounded-xl object-cover"
+                                 loading="eager">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="py-12 md:py-16 px-4 md:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="neuro-card p-8 md:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
+                        <div class="space-y-2">
+                            <div class="text-4xl md:text-5xl font-heading font-bold text-primary">100+</div>
+                            <div class="text-text/80 font-medium">Pacientes Atendidos</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-4xl md:text-5xl font-heading font-bold text-primary">5.0</div>
+                            <div class="text-text/80 font-medium">Avaliação no Google</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-4xl md:text-5xl font-heading font-bold text-primary">2</div>
+                            <div class="text-text/80 font-medium">Psicólogos Especializados</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profissionais -->
+        <section class="py-16 md:py-20 px-4 md:px-8" id="profissionais">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-text mb-4">Nossos Profissionais</h2>
+                    <p class="text-lg md:text-xl text-text/80 max-w-2xl mx-auto">Psicólogos especializados e comprometidos com sua saúde mental</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+                    <!-- Josmam Lima -->
+                    <div class="neuro-card p-6 md:p-8 cursor-pointer">
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                                <span class="text-3xl md:text-4xl font-bold text-white">JL</span>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-2xl md:text-3xl font-heading font-bold mb-2 text-primary">Josmam Lima</h3>
+                                <p class="text-text/70 font-semibold mb-4">Psicólogo Clínico</p>
+                            </div>
+                            <div class="space-y-3 text-text/80">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-cta flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Especialista em Terapia Cognitivo-Comportamental (TCC)</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-cta flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Avaliação Psicológica e Psicodiagnóstico</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-cta flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Atendimento a adolescentes e adultos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edilson Soares -->
+                    <div class="neuro-card p-6 md:p-8 cursor-pointer">
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-cta to-green-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                                <span class="text-3xl md:text-4xl font-bold text-white">ES</span>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-2xl md:text-3xl font-heading font-bold mb-2 text-primary">Edilson Soares</h3>
+                                <p class="text-text/70 font-semibold mb-4">Psicólogo Clínico</p>
+                            </div>
+                            <div class="space-y-3 text-text/80">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-cta flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Especialista em Terapia Cognitivo-Comportamental (TCC)</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-cta flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Avaliação Psicológica e Psicodiagnóstico</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-cta flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Atendimento a adolescentes e adultos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+        <section class="py-16 md:py-20 px-4 md:px-8" id="servicos">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-text mb-4">Nossos Serviços</h2>
+                    <p class="text-lg md:text-xl text-text/80 max-w-2xl mx-auto">Atendimento especializado para diversas demandas psicológicas</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div class="neuro-card p-6 md:p-8 space-y-4 cursor-pointer">
+                        <div class="icon-container">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-heading font-semibold text-text">Psicoterapia Individual</h3>
+                        <p class="text-text/80 leading-relaxed">Atendimento psicológico personalizado com abordagem TCC para ansiedade, depressão e outros transtornos.</p>
+                    </div>
+
+                    <div class="neuro-card p-6 md:p-8 space-y-4 cursor-pointer">
+                        <div class="icon-container">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-heading font-semibold text-text">Avaliação Psicológica</h3>
+                        <p class="text-text/80 leading-relaxed">Avaliação completa e psicodiagnóstico com instrumentos validados e relatórios detalhados.</p>
+                    </div>
+
+                    <div class="neuro-card p-6 md:p-8 space-y-4 cursor-pointer">
+                        <div class="icon-container">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-heading font-semibold text-text">Terapia de Casal</h3>
+                        <p class="text-text/80 leading-relaxed">Acompanhamento terapêutico para casais com foco em comunicação e fortalecimento de vínculos.</p>
+                    </div>
+
+                    <div class="neuro-card p-6 md:p-8 space-y-4 cursor-pointer">
+                        <div class="icon-container">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-heading font-semibold text-text">Orientação Profissional</h3>
+                        <p class="text-text/80 leading-relaxed">Auxílio na escolha da carreira e desenvolvimento profissional através de testes e entrevistas.</p>
+                    </div>
+
+                    <div class="neuro-card p-6 md:p-8 space-y-4 cursor-pointer">
+                        <div class="icon-container">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-heading font-semibold text-text">Gestão de Estresse</h3>
+                        <p class="text-text/80 leading-relaxed">Técnicas terapêuticas para manejo de estresse, burnout e ansiedade no trabalho.</p>
+                    </div>
+
+                    <div class="neuro-card p-6 md:p-8 space-y-4 cursor-pointer">
+                        <div class="icon-container">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-heading font-semibold text-text">Espaço Compartilhado</h3>
+                        <p class="text-text/80 leading-relaxed">Sublocação de consultório por hora ou mensal para profissionais da saúde mental.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre -->
+        <section class="py-16 md:py-20 px-4 md:px-8" id="sobre">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="neuro-card p-4 md:p-8">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&h=600&fit=crop&q=80"
+                             alt="Espaço Terapêutico Confortável"
+                             class="w-full h-auto rounded-xl object-cover"
+                             loading="lazy">
+                    </div>
+                    <div class="space-y-4 md:space-y-6">
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-text">Sobre a <span class="text-primary">Ressignificar Space</span></h2>
+                        <div class="space-y-4 text-base md:text-lg text-text/80 leading-relaxed">
+                            <p>
+                                A <strong class="text-text">Ressignificar Space</strong> é uma clínica de psicologia moderna e acolhedora
+                                localizada no coração de Feira de Santana, Bahia.
+                            </p>
+                            <p>
+                                Oferecemos atendimento psicológico de excelência com foco em <strong class="text-text">Terapia
+                                Cognitivo-Comportamental (TCC)</strong>, avaliação psicológica e psicodiagnóstico.
+                            </p>
+                            <p>
+                                Nosso espaço foi projetado para proporcionar conforto e privacidade, criando um ambiente seguro
+                                onde você pode se expressar livremente e trabalhar em direção ao seu bem-estar emocional.
+                            </p>
+                            <p>
+                                Além dos atendimentos, também oferecemos <strong class="text-text">espaço compartilhado para
+                                sublocação</strong> (por hora ou mensal) para outros profissionais da área da saúde mental.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4">
+                            <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="font-semibold text-text">Avaliação 5.0 no Google - 3 Avaliações</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section class="py-16 md:py-20 px-4 md:px-8" id="contato">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-text mb-4">Agende sua Consulta</h2>
+                    <p class="text-lg md:text-xl text-text/80 max-w-2xl mx-auto">Entre em contato e dê o primeiro passo para transformar sua saúde mental</p>
+                </div>
+
+                <div class="neuro-card p-6 md:p-10">
+                    <form class="space-y-6" id="contactForm">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold text-text mb-2">Nome Completo</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    class="neuro-input w-full px-4 py-3 text-text"
+                                    placeholder="Seu nome">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-semibold text-text mb-2">Telefone/WhatsApp</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    required
+                                    class="neuro-input w-full px-4 py-3 text-text"
+                                    placeholder="(75) 99999-9999">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-text mb-2">E-mail</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                class="neuro-input w-full px-4 py-3 text-text"
+                                placeholder="seu@email.com">
+                        </div>
+
+                        <div>
+                            <label for="service" class="block text-sm font-semibold text-text mb-2">Serviço de Interesse</label>
+                            <select
+                                id="service"
+                                name="service"
+                                required
+                                class="neuro-input w-full px-4 py-3 text-text cursor-pointer">
+                                <option value="">Selecione um serviço</option>
+                                <option value="psicoterapia">Psicoterapia Individual</option>
+                                <option value="avaliacao">Avaliação Psicológica</option>
+                                <option value="casal">Terapia de Casal</option>
+                                <option value="orientacao">Orientação Profissional</option>
+                                <option value="estresse">Gestão de Estresse</option>
+                                <option value="subloc">Sublocação de Espaço</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-text mb-2">Conte-me um pouco sobre o que você busca</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required
+                                class="neuro-input w-full px-4 py-3 text-text resize-none"
+                                placeholder="Descreva brevemente o que te trouxe até aqui..."></textarea>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="cta-button w-full text-white px-8 py-4 font-heading font-semibold text-lg cursor-pointer">
+                            Enviar Mensagem
+                        </button>
+
+                        <p class="text-sm text-text/60 text-center">
+                            🔒 Suas informações estão protegidas pelo sigilo profissional
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Informações de Contato -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 md:mt-12">
+                    <a href="tel:+5575992770331" class="neuro-card p-6 text-center space-y-3 cursor-pointer hover:scale-105 transition-transform">
+                        <svg class="w-8 h-8 text-primary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <div>
+                            <div class="font-semibold text-text">Telefone</div>
+                            <div class="text-text/70">(75) 99277-0331</div>
+                        </div>
+                    </a>
+
+                    <div class="neuro-card p-6 text-center space-y-3">
+                        <svg class="w-8 h-8 text-primary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <div class="font-semibold text-text">Horário</div>
+                            <div class="text-text/70">Seg-Sex: 8h-18h</div>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=Av.+Sampaio,+723+-+Centro,+Feira+de+Santana+-+BA" target="_blank" class="neuro-card p-6 text-center space-y-3 cursor-pointer hover:scale-105 transition-transform sm:col-span-2 lg:col-span-1">
+                        <svg class="w-8 h-8 text-primary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div>
+                            <div class="font-semibold text-text">Localização</div>
+                            <div class="text-text/70 text-sm">Av. Sampaio, 723 - Centro</div>
+                            <div class="text-text/70 text-sm">Feira de Santana - BA</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 md:py-12 px-4 md:px-8 border-t border-primary/20 mt-12 md:mt-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                            <span class="text-xl font-heading font-bold text-text">Ressignificar Space</span>
+                        </div>
+                        <p class="text-text/70 leading-relaxed">
+                            Clínica de Psicologia em Feira de Santana. Transformando vidas através do cuidado profissional.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-heading font-semibold text-text mb-4">Links Rápidos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#sobre" class="text-text/70 hover:text-primary transition-colors cursor-pointer">Sobre</a></li>
+                            <li><a href="#profissionais" class="text-text/70 hover:text-primary transition-colors cursor-pointer">Profissionais</a></li>
+                            <li><a href="#servicos" class="text-text/70 hover:text-primary transition-colors cursor-pointer">Serviços</a></li>
+                            <li><a href="#contato" class="text-text/70 hover:text-primary transition-colors cursor-pointer">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-heading font-semibold text-text mb-4">Informações</h4>
+                        <ul class="space-y-2 text-text/70">
+                            <li>📍 Av. Sampaio, 723 - Centro</li>
+                            <li>Feira de Santana - BA</li>
+                            <li>📞 (75) 99277-0331</li>
+                            <li>⭐ 5.0 - 3 Avaliações Google</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-primary/20 text-center space-y-2">
+                    <p class="text-text/60">&copy; 2026 Ressignificar Space - Clínica de Psicologia. Todos os direitos reservados.</p>
+                    <p class="text-text/50 text-sm">
+                        Desenvolvido por <a href="#" class="text-primary hover:text-secondary transition-colors font-semibold cursor-pointer">Marcelo Guimarães</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Criar partículas elegantes e sutis
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 20; // Menos partículas para ser mais sutil e elegante
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = (Math.random() * 100) + '%';
+            particle.style.animationDelay = (Math.random() * 20) + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's'; // Entre 15-25s para movimento mais suave
+            particlesContainer.appendChild(particle);
+        }
+
+        // Efeito de água realista com jquery.ripples
+        // Scripts carregados no final do body
+
+        // Menu Mobile
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            // Fechar menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = 100;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pelo contato! Retornaremos em breve para agendar sua consulta.');
+            this.reset();
+        });
+
+        // Parallax effect nas luzes
+        let rafId = null;
+        document.addEventListener('mousemove', (e) => {
+            if (rafId) cancelAnimationFrame(rafId);
+
+            rafId = requestAnimationFrame(() => {
+                const lights = document.querySelectorAll('.light');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                lights.forEach((light, index) => {
+                    const speed = (index + 1) * 25;
+                    const xOffset = (x - 0.5) * speed;
+                    const yOffset = (y - 0.5) * speed;
+                    light.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                });
+            });
+        });
+
+        // Intersection Observer para animações
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.neuro-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+    </script>
+
+    <!-- jQuery e jquery.ripples para efeito de água realista -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script>
+
+    <script>
+    (function() {
+      // Verificar se jQuery e ripples estão carregados
+      function checkDependencies(callback) {
+        if (typeof jQuery === 'undefined') {
+          console.error('jQuery não está carregado');
+          return false;
+        }
+        if (typeof jQuery.fn.ripples === 'undefined') {
+          console.error('jQuery.ripples não está carregado');
+          setTimeout(function() {
+            checkDependencies(callback);
+          }, 100);
+          return false;
+        }
+        callback();
+        return true;
+      }
+
+      checkDependencies(function() {
+        jQuery(document).ready(function($) {
+          console.log('Inicializando ripples...');
+          
+          // Criar imagem de fundo com gradiente usando canvas - visível mas suave
+          function createGradientImage(width, height) {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            
+            // Base suave azul água visível
+            ctx.fillStyle = 'rgba(224, 242, 254, 0.6)'; // Azul água claro visível
+            ctx.fillRect(0, 0, width, height);
+            
+            // Gradiente radial suave no centro
+            const centerGradient = ctx.createRadialGradient(
+              width * 0.5, height * 0.5, 0,
+              width * 0.5, height * 0.5, Math.max(width, height) * 0.8
+            );
+            centerGradient.addColorStop(0, 'rgba(186, 230, 253, 0.4)'); // Azul água suave
+            centerGradient.addColorStop(0.5, 'rgba(125, 211, 252, 0.3)'); // Azul água médio
+            centerGradient.addColorStop(1, 'rgba(96, 165, 250, 0.2)'); // Azul água profundo
+            
+            ctx.fillStyle = centerGradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Gradiente linear para profundidade
+            const linearGradient = ctx.createLinearGradient(0, 0, width, height);
+            linearGradient.addColorStop(0, 'rgba(147, 197, 253, 0.15)'); // Azul claro
+            linearGradient.addColorStop(0.5, 'rgba(96, 165, 250, 0.12)'); // Azul médio
+            linearGradient.addColorStop(1, 'rgba(59, 130, 246, 0.15)'); // Azul mais profundo
+            
+            ctx.fillStyle = linearGradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            return canvas.toDataURL('image/png');
+          }
+
+          const $rippleArea = $('.ripple-bg');
+          
+          if ($rippleArea.length === 0) {
+            console.error('Elemento .ripple-bg não encontrado');
+            return;
+          }
+
+          // Criar imagem de fundo dinâmica
+          const imgWidth = Math.max(window.innerWidth, 1920);
+          const imgHeight = Math.max(window.innerHeight, 1080);
+          const gradientImageUrl = createGradientImage(imgWidth, imgHeight);
+          
+          // Criar objeto Image para garantir que está carregada
+          const img = new Image();
+          img.onload = function() {
+            // Definir a imagem como background
+            $rippleArea.css('background-image', 'url(' + gradientImageUrl + ')');
+            $rippleArea.css('background-size', 'cover');
+            $rippleArea.css('background-position', 'center');
+            
+            // Pequeno delay para garantir que o CSS foi aplicado
+            setTimeout(function() {
+              try {
+                console.log('Aplicando efeito ripples...');
+                
+                $rippleArea.ripples({
+                  resolution: 256,
+                  perturbance: 0.03,
+                  dropRadius: 15,
+                  dropRadiusLimit: 25,
+                  interactive: true,
+                  crossOrigin: ''
+                });
+                
+                console.log('Ripples inicializado com sucesso!');
+                
+                // Criar arrasto fluido e contínuo - como passar o dedo na água
+                let lastX = -1000;
+                let lastY = -1000;
+                let rafId = null;
+                let mouseTrail = []; // Rastro do mouse para criar efeito contínuo
+
+                $(document).on('mousemove', function(e) {
+                  if (rafId) {
+                    cancelAnimationFrame(rafId);
+                  }
+
+                  rafId = requestAnimationFrame(function() {
+                    const rect = $rippleArea[0].getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // Verificar se o mouse está sobre a área do ripple
+                    if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                      const dx = x - lastX;
+                      const dy = y - lastY;
+                      const distance = Math.sqrt(dx * dx + dy * dy);
+                      
+                      // Criar efeito de arrasto contínuo
+                      if (lastX !== -1000 && lastY !== -1000 && distance > 0) {
+                        try {
+                          // Adicionar posição atual ao rastro
+                          mouseTrail.push({ x: x, y: y, time: Date.now() });
+                          
+                          // Manter apenas últimos pontos do rastro
+                          mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 200);
+                          
+                          // Criar múltiplas ondas ao longo do caminho para efeito contínuo
+                          const steps = Math.max(2, Math.floor(distance / 8)); // Mais passos = mais fluido
+                          
+                          for (let i = 1; i <= steps; i++) {
+                            const t = i / (steps + 1);
+                            const trailX = lastX + dx * t;
+                            const trailY = lastY + dy * t;
+                            const intensity = 1 - (t * 0.5); // Intensidade decai ao longo do caminho
+                            
+                            setTimeout(function() {
+                              try {
+                                // Ondas pequenas e frequentes para criar rastro contínuo
+                                $rippleArea.ripples('drop', trailX, trailY, 12 * intensity, 0.02 * intensity);
+                              } catch (err) {}
+                            }, i * 10); // Delay pequeno entre ondas
+                          }
+                          
+                          // Onda principal na posição atual do mouse
+                          $rippleArea.ripples('drop', x, y, 15, 0.025);
+                          
+                        } catch (err) {
+                          console.error('Erro ao criar ripple:', err);
+                        }
+                      }
+                      
+                      lastX = x;
+                      lastY = y;
+                    }
+                  });
+                });
+
+                // Garantir que o efeito está ativo
+                $rippleArea.ripples('play');
+                console.log('Ripples ativado e funcionando!');
+                
+                // Criar ondas automáticas muito suaves para movimento contínuo natural
+                function createAutoWaves() {
+                  const rect = $rippleArea[0].getBoundingClientRect();
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+                  
+                  // Criar ondas muito suaves e espaçadas para movimento natural
+                  setInterval(function() {
+                    const x = centerX + (Math.random() - 0.5) * rect.width * 0.15;
+                    const y = centerY + (Math.random() - 0.5) * rect.height * 0.15;
+                    
+                    try {
+                      // Ondas muito suaves e pequenas, como movimento natural da água
+                      $rippleArea.ripples('drop', x, y, 10, 0.01);
+                    } catch (err) {
+                      // Ignorar erros silenciosamente
+                    }
+                  }, 4000); // A cada 4 segundos para não competir com o arrasto do mouse
+                }
+                
+                createAutoWaves();
+                
+              } catch (e) {
+                console.error('Erro ao inicializar ripples:', e);
+              }
+            }, 50);
+          };
+          
+          img.onerror = function() {
+            console.error('Erro ao carregar imagem de gradiente');
+          };
+          
+          img.src = gradientImageUrl;
+        });
+      });
+    })();
+    </script>
+</body>
+</html>
