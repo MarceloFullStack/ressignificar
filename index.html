@@ -315,7 +315,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 0 !important;
+            z-index: 1 !important; /* Acima do light-background (0) mas abaixo do conteúdo (10+) */
             pointer-events: none;
             background-image: none;
             background-size: cover;
@@ -323,23 +323,32 @@
             opacity: 1;
             filter: blur(0.3px);
             transition: opacity 0.3s ease;
-            isolation: isolate; /* Cria novo contexto de empilhamento */
-        }
-        
-        .ripple-bg *,
-        .ripple-bg canvas,
-        .ripple-bg > * {
-            position: absolute !important;
-            z-index: 0 !important;
-            pointer-events: none !important;
         }
         
         .ripple-bg canvas {
+            position: absolute !important;
             width: 100% !important;
             height: 100% !important;
             top: 0 !important;
             left: 0 !important;
-            opacity: 0.85 !important;
+            z-index: 1 !important;
+            pointer-events: none !important;
+            opacity: 1 !important;
+            mix-blend-mode: normal !important;
+        }
+        
+        /* Garantir que todo o conteúdo fique acima do efeito ripple */
+        .relative.z-10 {
+            position: relative !important;
+            z-index: 10 !important;
+        }
+        
+        .relative.z-10 > *,
+        .relative.z-10 header,
+        .relative.z-10 section,
+        .relative.z-10 footer {
+            position: relative;
+            z-index: 11 !important;
         }
 
         /* Responsividade */
@@ -990,8 +999,8 @@
             canvas.height = height;
             const ctx = canvas.getContext('2d');
             
-            // Base suave azul água visível
-            ctx.fillStyle = 'rgba(224, 242, 254, 0.6)'; // Azul água claro visível
+            // Base suave azul água mais visível
+            ctx.fillStyle = 'rgba(224, 242, 254, 0.8)'; // Azul água claro mais visível
             ctx.fillRect(0, 0, width, height);
             
             // Gradiente radial suave no centro
@@ -999,18 +1008,18 @@
               width * 0.5, height * 0.5, 0,
               width * 0.5, height * 0.5, Math.max(width, height) * 0.8
             );
-            centerGradient.addColorStop(0, 'rgba(186, 230, 253, 0.4)'); // Azul água suave
-            centerGradient.addColorStop(0.5, 'rgba(125, 211, 252, 0.3)'); // Azul água médio
-            centerGradient.addColorStop(1, 'rgba(96, 165, 250, 0.2)'); // Azul água profundo
+            centerGradient.addColorStop(0, 'rgba(186, 230, 253, 0.5)'); // Azul água suave
+            centerGradient.addColorStop(0.5, 'rgba(125, 211, 252, 0.4)'); // Azul água médio
+            centerGradient.addColorStop(1, 'rgba(96, 165, 250, 0.3)'); // Azul água profundo
             
             ctx.fillStyle = centerGradient;
             ctx.fillRect(0, 0, width, height);
             
             // Gradiente linear para profundidade
             const linearGradient = ctx.createLinearGradient(0, 0, width, height);
-            linearGradient.addColorStop(0, 'rgba(147, 197, 253, 0.15)'); // Azul claro
-            linearGradient.addColorStop(0.5, 'rgba(96, 165, 250, 0.12)'); // Azul médio
-            linearGradient.addColorStop(1, 'rgba(59, 130, 246, 0.15)'); // Azul mais profundo
+            linearGradient.addColorStop(0, 'rgba(147, 197, 253, 0.2)'); // Azul claro
+            linearGradient.addColorStop(0.5, 'rgba(96, 165, 250, 0.18)'); // Azul médio
+            linearGradient.addColorStop(1, 'rgba(59, 130, 246, 0.2)'); // Azul mais profundo
             
             ctx.fillStyle = linearGradient;
             ctx.fillRect(0, 0, width, height);
@@ -1119,22 +1128,24 @@
                 // Garantir que o efeito está ativo
                 $rippleArea.ripples('play');
                 
-                // FORÇAR z-index do canvas criado pelo ripples
+                // Garantir z-index correto do canvas (acima do light-background mas abaixo do conteúdo)
                 setTimeout(function() {
                   const canvas = $rippleArea.find('canvas');
                   if (canvas.length > 0) {
+                    // Canvas acima do light-background (z-0) mas abaixo do conteúdo (z-10)
                     canvas.css({
-                      'z-index': '0 !important',
-                      'position': 'absolute !important',
-                      'pointer-events': 'none !important'
+                      'z-index': '1',
+                      'position': 'absolute',
+                      'pointer-events': 'none'
                     });
-                    console.log('Canvas z-index corrigido');
+                    console.log('Canvas configurado (z-index: 1 - acima do fundo, abaixo do conteúdo)');
                   }
                   
-                  // Também garantir no elemento pai
+                  // Garantir elemento pai também
                   $rippleArea.css({
-                    'z-index': '0 !important',
-                    'position': 'fixed !important'
+                    'z-index': '1',
+                    'position': 'fixed',
+                    'pointer-events': 'none'
                   });
                 }, 100);
                 
