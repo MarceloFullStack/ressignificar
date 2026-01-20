@@ -340,15 +340,28 @@
         /* Garantir que todo o conteúdo fique acima do efeito ripple */
         .relative.z-10 {
             position: relative !important;
-            z-index: 10 !important;
+            z-index: 100 !important;
+            isolation: isolate; /* Cria novo contexto de empilhamento */
         }
         
         .relative.z-10 > *,
         .relative.z-10 header,
         .relative.z-10 section,
-        .relative.z-10 footer {
+        .relative.z-10 footer,
+        .relative.z-10 nav,
+        .relative.z-10 div,
+        .relative.z-10 form {
+            position: relative !important;
+            z-index: 101 !important;
+        }
+        
+        /* Garantir que elementos específicos também fiquem acima */
+        header,
+        section,
+        footer,
+        nav {
             position: relative;
-            z-index: 11 !important;
+            z-index: 101 !important;
         }
 
         /* Responsividade */
@@ -1054,9 +1067,9 @@
                 
                 $rippleArea.ripples({
                   resolution: 256,
-                  perturbance: 0.03,
-                  dropRadius: 15,
-                  dropRadiusLimit: 25,
+                  perturbance: 0.018,
+                  dropRadius: 10,
+                  dropRadiusLimit: 20,
                   interactive: true,
                   crossOrigin: ''
                 });
@@ -1085,34 +1098,34 @@
                       const dy = y - lastY;
                       const distance = Math.sqrt(dx * dx + dy * dy);
                       
-                      // Criar efeito de arrasto contínuo
-                      if (lastX !== -1000 && lastY !== -1000 && distance > 0) {
+                      // Criar efeito de arrasto contínuo e suave
+                      if (lastX !== -1000 && lastY !== -1000 && distance > 5) { // Aumentar distância mínima
                         try {
                           // Adicionar posição atual ao rastro
                           mouseTrail.push({ x: x, y: y, time: Date.now() });
                           
                           // Manter apenas últimos pontos do rastro
-                          mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 200);
+                          mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 300);
                           
-                          // Criar múltiplas ondas ao longo do caminho para efeito contínuo
-                          const steps = Math.max(2, Math.floor(distance / 8)); // Mais passos = mais fluido
+                          // Criar menos ondas ao longo do caminho para efeito mais suave
+                          const steps = Math.max(1, Math.floor(distance / 20)); // Menos passos = mais suave
                           
                           for (let i = 1; i <= steps; i++) {
                             const t = i / (steps + 1);
                             const trailX = lastX + dx * t;
                             const trailY = lastY + dy * t;
-                            const intensity = 1 - (t * 0.5); // Intensidade decai ao longo do caminho
+                            const intensity = 1 - (t * 0.6); // Intensidade decai mais ao longo do caminho
                             
                             setTimeout(function() {
                               try {
-                                // Ondas pequenas e frequentes para criar rastro contínuo
-                                $rippleArea.ripples('drop', trailX, trailY, 12 * intensity, 0.02 * intensity);
+                                // Ondas menores e mais suaves
+                                $rippleArea.ripples('drop', trailX, trailY, 8 * intensity, 0.012 * intensity);
                               } catch (err) {}
-                            }, i * 10); // Delay pequeno entre ondas
+                            }, i * 25); // Delay maior entre ondas para suavizar
                           }
                           
-                          // Onda principal na posição atual do mouse
-                          $rippleArea.ripples('drop', x, y, 15, 0.025);
+                          // Onda principal mais suave na posição atual do mouse
+                          $rippleArea.ripples('drop', x, y, 10, 0.015);
                           
                         } catch (err) {
                           console.error('Erro ao criar ripple:', err);
@@ -1159,16 +1172,16 @@
                   
                   // Criar ondas muito suaves e espaçadas para movimento natural
                   setInterval(function() {
-                    const x = centerX + (Math.random() - 0.5) * rect.width * 0.15;
-                    const y = centerY + (Math.random() - 0.5) * rect.height * 0.15;
+                    const x = centerX + (Math.random() - 0.5) * rect.width * 0.1;
+                    const y = centerY + (Math.random() - 0.5) * rect.height * 0.1;
                     
                     try {
                       // Ondas muito suaves e pequenas, como movimento natural da água
-                      $rippleArea.ripples('drop', x, y, 10, 0.01);
+                      $rippleArea.ripples('drop', x, y, 6, 0.008);
                     } catch (err) {
                       // Ignorar erros silenciosamente
                     }
-                  }, 4000); // A cada 4 segundos para não competir com o arrasto do mouse
+                  }, 6000); // A cada 6 segundos para ser mais tranquilo
                 }
                 
                 createAutoWaves();
