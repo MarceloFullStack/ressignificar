@@ -1066,12 +1066,66 @@
                 console.log('Aplicando efeito ripples...');
                 
                 $rippleArea.ripples({
+                  // ===== OPÇÕES DE CONFIGURAÇÃO DO JQUERY.RIPPLES =====
+                  
+                  // resolution: Resolução do canvas interno usado para renderizar o efeito
+                  // Valores: Número (potência de 2 recomendado: 64, 128, 256, 512, 1024)
+                  // Menor = melhor performance, mas menos detalhe. Maior = mais detalhe, mas mais pesado
+                  // Padrão: 256
                   resolution: 256,
-                  perturbance: 0.018,
-                  dropRadius: 10,
-                  dropRadiusLimit: 20,
+                  
+                  // perturbance: Intensidade da distorção/refração do efeito de água
+                  // Valores: 0.0 a 1.0 (ou mais para efeitos extremos)
+                  // 0.0 = sem distorção, 0.1-0.2 = suave, 0.3+ = muito intenso
+                  // Controla o quanto a imagem de fundo é "dobrada" pelas ondas
+                  perturbance: 0.125, // Visível mas suave
+                  
+                  // dropRadius: Raio inicial das gotas/ondas quando criadas
+                  // Valores: Número positivo (geralmente 10-200)
+                  // Maior = ondas começam maiores e dispersam mais lentamente
+                  // Menor = ondas começam pequenas e dispersam mais rápido
+                  dropRadius: 170, // Maior = dispersa mais lentamente
+                  
+                  // dropRadiusLimit: Limite máximo que o raio das ondas pode atingir
+                  // Valores: Número positivo (geralmente 5-50)
+                  // Controla o tamanho máximo que as ondas podem crescer antes de desaparecer
+                  // Maior = ondas podem ficar muito grandes, Menor = ondas param de crescer cedo
+                  dropRadiusLimit: 14, // Maior limite para ondas grandes
+                  
+                  // interactive: Se o efeito responde a cliques/toques do usuário
+                  // Valores: true ou false
+                  // true = cria ondas automaticamente ao clicar/tocar no elemento
+                  // false = apenas ondas criadas programaticamente via método 'drop'
                   interactive: true,
-                  crossOrigin: ''
+                  
+                  // crossOrigin: Configuração CORS para imagens de fundo de origem cruzada
+                  // Valores: '' (vazio), 'anonymous', 'use-credentials'
+                  // Necessário apenas se usar imagem de fundo de outro domínio
+                  // '' = sem CORS, 'anonymous' = CORS sem credenciais
+                  crossOrigin: '',
+                  
+                  // ===== OPÇÕES ADICIONAIS DISPONÍVEIS (não usadas aqui) =====
+                  
+                  // imageUrl: URL de uma imagem para usar como fundo (opcional)
+                  // Se não especificado, usa a imagem de fundo CSS do elemento
+                  // Exemplo: imageUrl: 'https://exemplo.com/imagem.jpg'
+                  
+                  // waveSpeed: Velocidade de propagação das ondas (opcional)
+                  // Valores: Número positivo (geralmente 0.01 a 0.1)
+                  // Maior = ondas se movem mais rápido, Menor = ondas mais lentas
+                  // Padrão: ~0.02 (se não especificado)
+                  
+                  // waveHeight: Altura/intensidade das ondas (opcional)
+                  // Valores: Número positivo
+                  // Controla a amplitude das ondas geradas
+                  // Maior = ondas mais altas/intensas
+                  
+                  // ===== MÉTODOS DISPONÍVEIS (chamados via .ripples('método')) =====
+                  // 'drop', x, y, radius, strength - Cria uma onda programaticamente
+                  // 'play' - Inicia/retoma a animação
+                  // 'pause' - Pausa a animação
+                  // 'destroy' - Remove o efeito completamente
+                  // 'set', options - Atualiza as opções em tempo de execução
                 });
                 
                 console.log('Ripples inicializado com sucesso!');
@@ -1098,34 +1152,34 @@
                       const dy = y - lastY;
                       const distance = Math.sqrt(dx * dx + dy * dy);
                       
-                      // Criar efeito de arrasto contínuo e suave
-                      if (lastX !== -1000 && lastY !== -1000 && distance > 5) { // Aumentar distância mínima
+                      // Criar efeito de arrasto tranquilo e pacífico - dispersa lentamente
+                      if (lastX !== -1000 && lastY !== -1000 && distance > 8) { // Distância mínima menor para funcionar
                         try {
                           // Adicionar posição atual ao rastro
                           mouseTrail.push({ x: x, y: y, time: Date.now() });
                           
-                          // Manter apenas últimos pontos do rastro
-                          mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 300);
+                          // Manter apenas últimos pontos do rastro (mais tempo)
+                          mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 600);
                           
-                          // Criar menos ondas ao longo do caminho para efeito mais suave
-                          const steps = Math.max(1, Math.floor(distance / 20)); // Menos passos = mais suave
+                          // Criar menos ondas para efeito tranquilo mas visível
+                          const steps = Math.max(1, Math.floor(distance / 35)); // Menos ondas = mais calmo
                           
                           for (let i = 1; i <= steps; i++) {
                             const t = i / (steps + 1);
                             const trailX = lastX + dx * t;
                             const trailY = lastY + dy * t;
-                            const intensity = 1 - (t * 0.6); // Intensidade decai mais ao longo do caminho
+                            const intensity = 1 - (t * 0.5); // Intensidade decai suavemente
                             
                             setTimeout(function() {
                               try {
-                                // Ondas menores e mais suaves
-                                $rippleArea.ripples('drop', trailX, trailY, 8 * intensity, 0.012 * intensity);
+                                // Ondas maiores com menor intensidade = dispersam muito lentamente
+                                $rippleArea.ripples('drop', trailX, trailY, 13 * intensity, 0.008 * intensity);
                               } catch (err) {}
-                            }, i * 25); // Delay maior entre ondas para suavizar
+                            }, i * 50); // Delay maior para movimento tranquilo
                           }
                           
-                          // Onda principal mais suave na posição atual do mouse
-                          $rippleArea.ripples('drop', x, y, 10, 0.015);
+                          // Onda principal grande e suave que dispersa muito lentamente
+                          $rippleArea.ripples('drop', x, y, 14, 0.009);
                           
                         } catch (err) {
                           console.error('Erro ao criar ripple:', err);
@@ -1164,24 +1218,24 @@
                 
                 console.log('Ripples ativado e funcionando!');
                 
-                // Criar ondas automáticas muito suaves para movimento contínuo natural
+                // Criar ondas automáticas tranquilas e pacíficas para movimento contínuo natural
                 function createAutoWaves() {
                   const rect = $rippleArea[0].getBoundingClientRect();
                   const centerX = rect.width / 2;
                   const centerY = rect.height / 2;
                   
-                  // Criar ondas muito suaves e espaçadas para movimento natural
+                  // Criar ondas bem espaçadas e lentas para transmitir paz
                   setInterval(function() {
-                    const x = centerX + (Math.random() - 0.5) * rect.width * 0.1;
-                    const y = centerY + (Math.random() - 0.5) * rect.height * 0.1;
+                    const x = centerX + (Math.random() - 0.5) * rect.width * 0.08;
+                    const y = centerY + (Math.random() - 0.5) * rect.height * 0.08;
                     
                     try {
-                      // Ondas muito suaves e pequenas, como movimento natural da água
-                      $rippleArea.ripples('drop', x, y, 6, 0.008);
+                      // Ondas grandes e bem suaves que dispersam muito lentamente, transmitindo paz
+                      $rippleArea.ripples('drop', x, y, 12, 0.007);
                     } catch (err) {
                       // Ignorar erros silenciosamente
                     }
-                  }, 6000); // A cada 6 segundos para ser mais tranquilo
+                  }, 10000); // A cada 10 segundos para tranquilidade
                 }
                 
                 createAutoWaves();
