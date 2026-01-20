@@ -323,17 +323,23 @@
             opacity: 1;
             filter: blur(0.3px);
             transition: opacity 0.3s ease;
+            isolation: isolate; /* Cria novo contexto de empilhamento */
+        }
+        
+        .ripple-bg *,
+        .ripple-bg canvas,
+        .ripple-bg > * {
+            position: absolute !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
         }
         
         .ripple-bg canvas {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            opacity: 0.85;
-            z-index: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+            opacity: 0.85 !important;
         }
 
         /* Responsividade */
@@ -1112,6 +1118,26 @@
 
                 // Garantir que o efeito está ativo
                 $rippleArea.ripples('play');
+                
+                // FORÇAR z-index do canvas criado pelo ripples
+                setTimeout(function() {
+                  const canvas = $rippleArea.find('canvas');
+                  if (canvas.length > 0) {
+                    canvas.css({
+                      'z-index': '0 !important',
+                      'position': 'absolute !important',
+                      'pointer-events': 'none !important'
+                    });
+                    console.log('Canvas z-index corrigido');
+                  }
+                  
+                  // Também garantir no elemento pai
+                  $rippleArea.css({
+                    'z-index': '0 !important',
+                    'position': 'fixed !important'
+                  });
+                }, 100);
+                
                 console.log('Ripples ativado e funcionando!');
                 
                 // Criar ondas automáticas muito suaves para movimento contínuo natural
